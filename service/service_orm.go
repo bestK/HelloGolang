@@ -5,12 +5,10 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-
 var (
 	//数据库操作对象
 	db *sqlx.DB
 )
-
 
 /**
 	初始化数据库连接

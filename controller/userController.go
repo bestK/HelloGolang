@@ -26,13 +26,11 @@ func SelectUser_(c echo.Context) error {
 */
 func SelectUser(c echo.Context) error {
 
-
 	data, err := service.SelectUsers(c)
 
 	if err != nil {
 		return util.Bad(c, http.StatusInternalServerError, err.Error())
 	}
 
-	return util.Ok(c,"successfully",data)
+	return util.Ok(c, "successfully", data)
 }
-

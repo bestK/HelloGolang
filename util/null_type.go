@@ -9,13 +9,10 @@ import (
 	"encoding/json"
 )
 
-
 /*
 	来自 https://medium.com/aubergine-solutions/how-i-handled-null-possible-values-from-database-rows-in-golang-521fb0ee267
 
 */
-
-
 
 // NullInt64 is an alias for sql.NullInt64 data type
 type NullInt64 sql.NullInt64

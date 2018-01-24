@@ -6,14 +6,13 @@ import (
 	"net/http"
 )
 
-func NotFoundHandler(c echo.Context) error{
-	return util.Bad(c,http.StatusNotFound,"Page not found")
+func NotFoundHandler(c echo.Context) error {
+	return util.Bad(c, http.StatusNotFound, "Page not found")
 }
-
 
 /*
 	首页
 */
 func Index(c echo.Context) error {
-	return c.JSON(http.StatusOK, util.Fr(http.StatusOK, "service run", nil))
+	return util.Ok(c, "service run", nil)
 }
