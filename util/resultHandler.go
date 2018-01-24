@@ -58,15 +58,16 @@ func Build(rows *sql.Rows) (interface{}, error) {
 	formatResult
 	统一 JSON 返回格式
 */
-func Fr(code int, message string, i interface{}) interface{} {
-	f := make(map[string]interface{})
-	f["code"] = code
-	f["message"] = message
-	f["data"] = i
-	return f
+func Fr(code int, message string, data interface{}) interface{} {
+	response := make(map[string]interface{})
+	response["code"] = code
+	response["message"] = message
+	response["data"] = data
+	response["success"] = code == http.StatusOK
+	return response
 }
 
-func Ok(c echo.Context,message string,data interface{}) error  {
+func Ok(c echo.Context, message string, data interface{}) error {
 	return c.JSON(http.StatusOK, Fr(http.StatusOK, message, data))
 }
 

@@ -16,25 +16,16 @@ var (
 	初始化数据库连接
  */
 func Start() {
-	logger.Info("start connection databases...")
+	logger.Info("Start connection databases...")
 	sqlSession, err := sqlx.Open("mysql", "root:vinohobby@tcp(127.0.0.1:3306)/vino?charset=utf8")
 	if err != nil {
-		panic("open database error!")
+		panic("Open database error!")
 	}
 
 	if err := sqlSession.Ping(); err != nil {
-		panic("connection database fail!")
+		panic("Connection database fail!")
 	}
 
 	db = sqlSession
-	logger.Info("connection database success...")
-
-	// 测试数据库查询
-	var count int
-	if err = db.Get(&count, "SELECT count(*) FROM vino_user"); err != nil {
-		logger.Error(err)
-		return
-	}
-	logger.Debug("count t_user :", count)
-
+	logger.Info("Connection database success...")
 }
