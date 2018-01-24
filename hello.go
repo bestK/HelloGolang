@@ -4,8 +4,9 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"database/sql"
 	"github.com/labstack/echo"
-	"hello/util"
-	"net/http"
+	"hello/controller"
+	"github.com/jmoiron/sqlx"
+	"hello/service"
 )
 
 type User struct {
@@ -14,32 +15,19 @@ type User struct {
 }
 
 var (
-	db = &sql.DB{}
+	db *sqlx.DB
 )
 
-/*
-	初始化数据库连接
-*/
-func init() {
-	db, _ = sql.Open("mysql", "root:vinohobby@tcp(127.0.0.1:3306)/vino?charset=utf8")
-}
-
-/*
-	数据库查询
-*/
-func selectUser(c echo.Context) error {
-	curPage := c.QueryParam("curPage")
-	pageSize := c.QueryParam("pageSize")
-
-	if curPage == "" || pageSize == "" {
-		return c.JSON(http.StatusBadRequest, util.Fr(http.StatusBadRequest, "parameter invalid", nil))
-	}
-
-	return c.JSON(http.StatusOK, util.Fr(http.StatusOK, "successfully", util.Querys("SELECT id,nick_name FROM vino_user LIMIT "+curPage+" , "+pageSize, db)))
-}
 
 func main() {
+
+	// 连接数据库
+	service.Start()
+
+
+
 	e := echo.New()
-	e.GET("/", selectUser)
-	e.Logger.Fatal(e.Start(":1323"))
+	e.GET("/api/users", controller.SelectUser)
+	//e.GET("/", index)
+	e.Logger.Fatal(e.Start(":80"))
 }

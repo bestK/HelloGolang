@@ -2,6 +2,8 @@ package util
 
 import (
 	"database/sql"
+	"github.com/labstack/echo"
+	"net/http"
 )
 
 /*
@@ -62,4 +64,12 @@ func Fr(code int, message string, i interface{}) interface{} {
 	f["message"] = message
 	f["data"] = i
 	return f
+}
+
+func Ok(c echo.Context,message string,data interface{}) error  {
+	return c.JSON(http.StatusOK, Fr(http.StatusOK, message, data))
+}
+
+func Bad(c echo.Context, code int, message string) error {
+	return c.JSON(code, Fr(code, message, nil))
 }
