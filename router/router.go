@@ -13,6 +13,8 @@ func Start()  {
 	e := echo.New()
 	e.GET("/api/users", controller.SelectUser)
 	e.GET("/", controller.Index)
+
+	echo.NotFoundHandler = controller.NotFoundHandler
 	e.Logger.Fatal(e.Start(":80"))
 	logger.Info("Router build done")
 }

@@ -1,16 +1,9 @@
 package main
 
 import (
-	_ "github.com/go-sql-driver/mysql"
 	"hello/router"
-	"github.com/jmoiron/sqlx"
 	"hello/service"
 )
-
-var (
-	db *sqlx.DB
-)
-
 
 func main() {
 

@@ -36,9 +36,3 @@ func SelectUser(c echo.Context) error {
 	return util.Ok(c,"successfully",data)
 }
 
-/*
-	首页
-*/
-func Index(c echo.Context) error {
-	return c.JSON(http.StatusOK, util.Fr(http.StatusOK, "service run", nil))
-}
