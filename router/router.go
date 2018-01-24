@@ -2,8 +2,8 @@ package router
 
 import (
 	"github.com/labstack/echo"
-	"hello/controller"
 	"github.com/donnie4w/go-logger/logger"
+	"hello/controller"
 )
 
 /*

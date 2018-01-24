@@ -5,23 +5,23 @@ import (
 	"github.com/donnie4w/go-logger/logger"
 	"hello/util"
 	"github.com/labstack/echo"
+	"net/http"
 )
 
-func SelectUsers(c echo.Context) (*[]model.User, error) {
-
+func SelectUsers(c echo.Context) error {
 	curPage := c.QueryParam("curPage")
 	pageSize := c.QueryParam("pageSize")
 
 	if curPage == "" || pageSize == "" {
-		return nil, util.Err("parameter invalid")
+		return util.Bad(c, http.StatusBadRequest, "parameter invalid")
 	}
 
-	user := []model.User{}
+	var user []model.User
 	selectSql := "SELECT id,nick_name FROM vino_user LIMIT  ?,?"
 	if err := db.Select(&user, selectSql, curPage, pageSize); err != nil {
 		logger.Error(err)
-		return nil, err
+		return util.Bad(c, http.StatusInternalServerError, err.Error())
 	}
 
-	return &user, nil
+	return util.Ok(c, "successfully", &user)
 }
