@@ -26,5 +26,6 @@ func SelectUsers(c echo.Context) (*[]model.User, error) {
 		logger.Error(err)
 		return nil, err
 	}
+
 	return &user, nil
 }
