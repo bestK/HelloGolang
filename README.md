@@ -22,7 +22,7 @@
 ```
 ### How to build
 
-```
+``` shell
 
 yum install go -y
 
