@@ -20,3 +20,29 @@
     "success": true
 }
 ```
+### How to build
+
+```
+
+yum install go -y
+
+vi /etc/profile
+    export GOPATH=/root/go
+    export PATH=$PATH:$GOPATH/bin
+    
+cd /root/go && mkdir src
+
+cd ./src
+
+
+git clone https://github.com/bestK/hello.git
+
+cd hello
+
+
+go get
+
+go build
+
+nohup ./hello &
+```
