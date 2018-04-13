@@ -30,6 +30,11 @@ vi /etc/profile
     export GOPATH=/root/go
     export PATH=$PATH:$GOPATH/bin
     
+:wq
+
+
+source /etc/profile
+    
 cd /root/go && mkdir src
 
 cd ./src
